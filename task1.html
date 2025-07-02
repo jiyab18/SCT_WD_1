@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Navigation Menu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(90deg, navy 0%, skyblue 100%);
+      padding: 18px 0;
+      transition: background 0.3s, box-shadow 0.3s, border-bottom 0.3s;
+      z-index: 1000;
+      border-bottom: 3px solid skyblue;
+      box-shadow: 0 2px 12px rgba(0,0,128,0.10);
+    }
+
+    .navbar.scrolled {
+      background: linear-gradient(90deg, #222 0%, #555 100%);
+      box-shadow: 0 6px 24px rgba(34,34,34,0.18);
+      border-bottom: 3px solid navy;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      gap: 32px;
+    }
+
+    .navbar ul li {
+      margin: 0;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 22px;
+      font-size: 1.08rem;
+      font-weight: 500;
+      border-radius: 24px;
+      transition: color 0.3s, background 0.3s;
+    }
+
+    .navbar ul li a:hover, .navbar ul li a.active {
+      background: skyblue;
+      color: navy;
+    }
+
+    .content {
+      margin-top: 100px;
+      padding: 40px;
+      height: 2000px; 
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #0d47a1;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 32px;
+      align-items: stretch;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .flex-item {
+      flex: 1 1 260px;
+      min-width: 260px;
+      max-width: 340px;
+      background: linear-gradient(135deg, #e3f2fd 0%, #fffde7 100%);
+      padding: 28px 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(13, 71, 161, 0.08);
+      margin-bottom: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1.5px solid #bbdefb;
+      position: relative;
+    }
+    .flex-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(13, 71, 161, 0.18);
+      border-color: #0d47a1;
+    }
+    .flex-item h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: #0d47a1;
+      letter-spacing: 0.5px;
+    }
+    .flex-item ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+    .flex-item ul li {
+      margin-bottom: 8px;
+      color: #333;
+    }
+    .flex-item .icon {
+      font-size: 2.2rem;
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    
+    <section class="flex-container">
+      <div class="flex-item">
+        <h2>Our Mission</h2>
+        <p>We strive to deliver the best service to our customers with a focus on quality and innovation.</p>
+      </div>
+      <div class="flex-item">
+        <h2>Featured Services</h2>
+        <ul>
+          <li>Web Development</li>
+          <li>UI/UX Design</li>
+          <li>Mobile Apps</li>
+          
+        </ul>
+      </div>
+      <div class="flex-item">
+        <h2>Contact Information</h2>
+        <p>Email: abc@gmail.com</p>
+        <p>Phone: +1 234 567 8900</p>
+        <p>Address: 123 XYZ</p>
+      </div>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    
+    const navLinks = document.querySelectorAll('.navbar ul li a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
